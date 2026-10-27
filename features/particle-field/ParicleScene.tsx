@@ -5,7 +5,7 @@ import ParticleSystem from './ParticleSystem';
 
 export default function ParticleScene() {
   return (
-    <Canvas camera={{ position: [0, 0, 3], fov: 40 }}>
+    <Canvas camera={{ position: [0, 0, 3], fov: 50}}>
       <ParticleSystem />
     </Canvas>
   );

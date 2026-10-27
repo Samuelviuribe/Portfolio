@@ -1,17 +1,19 @@
-
 import ParticleScene from '@/features/particle-field/ParicleScene';
+import Hero from '@/sections/Hero';
 
 
 export default function Home() {
   return (
     <main>
-      <h1>Mi portafolio</h1>
-      <div style={{ height: '550px' }}>
+      <div style={{ height: '50vh', width:'50vw', position:'fixed'}}>
         <ParticleScene />
       </div>
 
 
-      <section
+      <Hero/>
+
+      <section 
+        id='work'
         style={{
           height: '200vh',
           background: '#080808',
@@ -19,6 +21,8 @@ export default function Home() {
           padding: '40px',
         }}>
       </section>
+
+
     </main>
   );
 }
