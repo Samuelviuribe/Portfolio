@@ -1,11 +1,13 @@
 // useMemo evita regenerar las cordenadas y la geometria en cada render
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { useMemo, useEffect, useRef } from "react";
 import * as THREE from 'three'; //three
+
 
 const vertexShader = `
 uniform float uProgress;
 uniform float uTime;
+uniform vec2 uResolution;
 
 attribute vec3 aTarget;
 attribute vec2 aCorner;
@@ -32,27 +34,35 @@ void main() {
     cos(uTime * 1.5 + phaseZ) * vibration * 1.5
 );
 
-  vec4 viewPosition = modelViewMatrix * vec4(newPosition, 1.0);
-  vec4 clipPosition = projectionMatrix * viewPosition;
+ 
+vec4 viewPosition = modelViewMatrix * vec4(newPosition, 1.0);
+vec4 clipPosition = projectionMatrix * viewPosition;
 
-  vec3 viewVelocity = mat3(modelViewMatrix) * velocity;
-  vec2 projectedVelocity =
+// Dirección del movimiento proyectada en pantalla
+vec3 viewVelocity = mat3(modelViewMatrix) * velocity;
+vec2 projectedVelocity =
   (projectionMatrix * vec4(viewVelocity, 0.0)).xy;
 
-vec2 screenDirection = length(projectedVelocity) > 0.00001
-  ? normalize(projectedVelocity)
+vec2 pixelVelocity = projectedVelocity * uResolution;
+
+vec2 screenDirection = length(pixelVelocity) > 0.00001
+  ? normalize(pixelVelocity)
   : vec2(1.0, 0.0);
 
-  vec2 perpendicular = vec2(-screenDirection.y, screenDirection.x);
+vec2 perpendicular = vec2(-screenDirection.y, screenDirection.x);
+
+// Tamaño de la estela en píxeles
+float trailLength = 8.0;
+float trailWidth = 1.5;
+
+vec2 pixelOffset =
+  screenDirection * aCorner.x * trailLength
+  + perpendicular * aCorner.y * trailWidth;
+
+clipPosition.xy +=
+  (pixelOffset * 2.0 / uResolution) * clipPosition.w;
 
 
-    float trailLength = 0.018;
-    float trailWidth = 0.003;
-
-  clipPosition.xy += (
-    screenDirection * aCorner.x * trailLength
-    + perpendicular * aCorner.y * trailWidth
-  ) * clipPosition.w;
 
   gl_Position = clipPosition;
 
@@ -88,12 +98,13 @@ void main() {
 
   // Desvanecimiento a lo largo de la estela
   float trailFade = smoothstep(-1.0, 0.8, vTrail);
-   float alpha = trailFade * 0.35;
+  float alpha = trailFade * 0.35;
   gl_FragColor = vec4(color, alpha);
 }
 `;
 
 export default function ParticleSystem() {
+    const { size } = useThree();
     const positions = useMemo(() => {
         const count = 5000;
         const points = new Float32Array(count * 3);
@@ -125,7 +136,6 @@ export default function ParticleSystem() {
         for (let i = 0; i < count; i++) {
             const group = i % 2;
 
-            // Dirección aleatoria sobre una esfera
             const u = Math.random();
             const v = Math.random();
             const theta = 2 * Math.PI * u;
@@ -135,16 +145,11 @@ export default function ParticleSystem() {
             const y = Math.sin(phi) * Math.sin(theta);
             const z = Math.cos(phi);
 
-            const offsetX = group === 0 ? 1.5 : -1.5;
+            const offsetX = group === 0 ? -1.5 : 1.5;
 
             targets[i * 3] = x + offsetX;
             targets[i * 3 + 1] = y;
             targets[i * 3 + 2] = z;
-            // const offsetY = group === 0 ? 1.5 : -1.5;
-
-            // targets[i * 3] = x;
-            // targets[i * 3 + 1] = y + offsetY;
-            // targets[i * 3 + 2] = z;
         }
 
         return targets;
@@ -245,6 +250,11 @@ export default function ParticleSystem() {
     useFrame((state, delta) => {
         if (materialRef.current) {
 
+            materialRef.current.uniforms.uResolution.value.set(
+                state.size.width,
+                state.size.height
+            )
+
             progressRef.current = THREE.MathUtils.damp(
                 progressRef.current,
                 targetProgressRef.current,
@@ -252,7 +262,7 @@ export default function ParticleSystem() {
                 delta
             );
 
-            materialRef.current.uniforms.uProgress.value = 
+            materialRef.current.uniforms.uProgress.value =
                 progressRef.current;
 
             materialRef.current.uniforms.uTime.value =
@@ -268,8 +278,12 @@ export default function ParticleSystem() {
                 fragmentShader={fragmentShader}
                 uniforms={{
                     uProgress: { value: 0 },
-                    uTime: { value: 0 }
+                    uTime: { value: 0 },
+                    uResolution: {
+                        value: new THREE.Vector2(size.width, size.height)
+                    }
                 }}
+
                 transparent
                 depthWrite={false}
             />

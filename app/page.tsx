@@ -1,14 +1,16 @@
 import ParticleScene from '@/features/particle-field/ParicleScene';
 import Hero from '@/sections/Hero';
+import Navbar from '@/components/Navbar';
 
 
 export default function Home() {
   return (
     <main>
-      <div style={{ height: '50vh', width:'50vw', position:'fixed'}}>
+      <div className='particle-background'>
         <ParticleScene />
       </div>
 
+      <Navbar/>
 
       <Hero/>
 
