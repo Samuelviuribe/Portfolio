@@ -1,56 +1,191 @@
-.hero{
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-    box-sizing: border-box;
-    color: white;
-    position: relative;
-    z-index: 1;
+.hero {
+  min-height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(250px, 0.7fr);
+  align-items: center;
+  gap: clamp(40px, 8vw, 120px);
+  padding: 100px 10%;
+  color: #f1f6ff;
+  text-align: left;
 }
 
-.hero h1 {
-    font-size: clamp(3rem,tvw,6.5rem);
-    font-weight: 500;
-    letter-spacing: -0.06em;
-    line-height: 1;
-    margin: 0 0 24px;
+.intro {
+  min-width: 0;
+}
+
+.name {
+  max-width: 100%;
+  margin: 0 0 24px;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -0.055em;
+  font-family: var(--font-instrument-serif), serif;
+}
+
+.name span {
+  display: block;
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #72dfff;
+  background: linear-gradient(100deg,
+      #f1f6ff 15%,
+      #8be7ff 65%,
+      #9baaff 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation:
+    typing 1.8s steps(18, end) 0.4s forwards,
+    cursor-blink 0.8s step-end infinite;
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: #8ccde8;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  line-height: 1.8;
 }
 
 .hero h2 {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    font-weight: 400;
-    letter-spacing: -0.03em;
-    margin: 24px 0 12px;
+  max-width: 650px;
+  margin: 0 0 16px;
+  font-family: var(--font-instrument-serif), serif;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 400;
+  letter-spacing: -0.035em;
 }
 
-.hero p {
-    font-size: 0.85rem;
-    line-height: 1.7;
-    color: rgba(255, 255, 255, 0.65);
-    margin: 0;
+.description {
+  margin: 0 0 28px;
+  color: #aab6c9;
+  line-height: 1.8;
 }
 
-.hero a {
-    display: inline-block;
-    margin-top: 32px;
-    padding-bottom: 6px;
-    color: white;
-    font-size: 0.9rem;
-    text-decoration: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
-    transition: border-color 180ms ease, color 180ms ease;
+.cta {
+  color: #c4eaff;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
-.hero a:hover {
-    color: #8be9ff;
-    border-color: #8be9ff;
+.cta:hover {
+  color: #72dfff;
 }
 
-@media (max-width: 600px) {
-    .hero {
-        padding: 100px 7%;
+.paradoxPanel {
+  max-width: 340px;
+  justify-self: end;
+  padding: 24px 0 24px 24px;
+  border-left: 1px solid rgb(139 231 255 / 35%);
+}
+
+.panelLabel {
+  display: block;
+  margin-bottom: 28px;
+  color: #8ccde8;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  line-height: 1.8;
+}
+
+.paradoxPanel h3 {
+  margin: 0 0 16px;
+  font-family: var(--font-instrument-serif), serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  font-weight: 400;
+}
+
+.paradoxPanel p {
+  margin: 0 0 32px;
+  color: #aab6c9;
+  font-size: 0.9rem;
+  line-height: 1.9;
+}
+
+.scrollHint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #c4eaff;
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+}
+
+.scrollHint span {
+  font-size: 1rem;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 13ch;
+  }
+}
+
+@keyframes cursor-blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero {
+    grid-template-columns: 1fr;
+    align-content: center;
+    gap: 44px;
+    padding: 110px 7% 70px;
+  }
+
+  .name {
+    font-size: clamp(1.7rem, 7vw, 2.6rem);
+  }
+
+  .paradoxPanel {
+    max-width: 340px;
+    width: 100%;
+    box-sizing: border-box;
+    justify-self: end;
+    padding: 28px;
+
+    background: rgba(25, 35, 52, 0.90);
+    border: 1px solid rgba(160, 195, 220, 0.22);
+    border-radius: 8px;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  @media (max-width: 760px) {
+    .paradoxPanel {
+      justify-self: start;
+      max-width: 440px;
+      padding: 24px;
     }
+  }
+
+  .panelLabel {
+    margin-bottom: 14px;
+  }
+
+  .paradoxPanel p {
+    margin-bottom: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .name span {
+    width: auto;
+    animation: none;
+    border-right: none;
+  }
 }
