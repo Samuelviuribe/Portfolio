@@ -4,41 +4,39 @@ export default function Hero() {
     return (
         <section id="home" className={styles.hero}>
             <div className={styles.intro}>
-                <h1 className={styles.name}>
-                    <span>  
-                        Samuel Viaña Uribe.
-                    </span>
-                </h1>
+
                 <p className={styles.eyebrow}>
-                    SOFTWARE ENGINEERING · CREATIVE DEVELOPMENT
+                    SOFTWARE ENGINEERING
+                    <span> · </span>
+                    CREATIVE DEVELOPMENT
                 </p>
 
-                <h2>Building digital experiences.</h2>
+                <div className={styles.typingSequence}>
+                    <h1 className={styles.name}>
+                        <span>Samuel Viaña Uribe.</span>
+                    </h1>
+
+                    <h2 className={styles.headline}>
+                        <span>Building digital experiences.</span>
+                    </h2>
+                </div>
+
                 <p className={styles.description}>
-                    Software, design and interactive technology.
+                    Software, design and interactive technology. <br /> 
+                    Exploring the intersection between functionality and creativity.
                 </p>
 
-                <a className={styles.cta} href="#work">
-                    Explore my work ↘
-                </a>
-            </div>
+                <div className={styles.actions}>
+                    <a className={styles.cta} href="#work">
+                        Explore my work <span>↗</span>
+                    </a>
 
-            <aside className={styles.paradoxPanel}>
-                <span className={styles.panelLabel}>
-                 01 / A MATHEMATICAL PARADOX   
-                </span>    
-                <h3>
-                    Can one sphere become two?
-                </h3>
-                    <p>
-                    The Banach–Tarski paradox shows that, under specific mathematical
-                    assumptions, a solid sphere can be decomposed into a finite number
-                    of pieces and reassembled into two identical copies.
-                    </p>
-                <span className={styles.scrollHint}>
-                    SCROLL TO EXPLORE <span aria-hidden="true">↓</span>
-                </span>    
-            </aside>
+                    <a className={styles.secondaryCta} href="app/about-the-paradox">
+                        Discover the paradox <span>↗</span>
+                    </a>
+                </div>
+
+            </div>
         </section>
     );
 }

@@ -1,8 +1,8 @@
 import styles from './Navbar.module.css';
 
 const links = [
-    {label: 'Work', href:"#Work"},
-    {label: 'About', href:"#About"},
+    {label: 'Work', href:"#work"},
+    {label: 'About', href:"#about"},
     {label: 'Contact', href:"#Contact"}
 ]
 

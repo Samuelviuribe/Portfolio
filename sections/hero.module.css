@@ -1,3 +1,4 @@
+
 .hero {
   min-height: 100vh;
   box-sizing: border-box;
@@ -6,7 +7,7 @@
   align-items: center;
   gap: clamp(40px, 8vw, 120px);
   padding: 100px 10%;
-  color: #f1f6ff;
+  color: #f5f7ff;
   text-align: left;
 }
 
@@ -14,66 +15,86 @@
   min-width: 0;
 }
 
-.name {
+/* Secuencia de escritura */
+
+.typingSequence {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   max-width: 100%;
+}
+
+.name,
+.headline {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  max-width: 100%;
+}
+
+.name span,
+.headline span {
+  display: block;
+  white-space: nowrap;
+}
+
+.name {
   margin: 0 0 24px;
   font-size: clamp(2rem, 5vw, 4.5rem);
   font-weight: 400;
   letter-spacing: -0.055em;
   font-family: var(--font-instrument-serif), serif;
+  color: #f5f7ff;
+
+  animation: typing-name 1.8s steps(18, end) 0.4s forwards;
 }
 
-.name span {
-  display: block;
-  width: 0;
-  max-width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid #72dfff;
-  background: linear-gradient(100deg,
-      #f1f6ff 15%,
-      #8be7ff 65%,
-      #9baaff 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  animation:
-    typing 1.8s steps(18, end) 0.4s forwards,
-    cursor-blink 0.8s step-end infinite;
-}
-
-.eyebrow {
-  margin: 0 0 18px;
-  color: #8ccde8;
-  font-size: 0.75rem;
-  letter-spacing: 0.16em;
-  line-height: 1.8;
-}
-
-.hero h2 {
-  max-width: 650px;
+.headline {
   margin: 0 0 16px;
   font-family: var(--font-instrument-serif), serif;
   font-size: clamp(1.8rem, 3.5vw, 3rem);
   font-weight: 400;
   letter-spacing: -0.035em;
+  color: #f5f7ff;
+
+  animation: typing-headline 2.8s steps(29, end) 2.4s forwards;
+}
+
+@keyframes typing-name {
+  from { width: 0; }
+  to { width: 18ch; }
+}
+
+@keyframes typing-headline {
+  from { width: 0; }
+  to { width: 29ch; }
+}
+
+.eyebrow {
+  margin: 0 0 18px;
+  color: #91a9c5;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  line-height: 1.8;
 }
 
 .description {
   margin: 0 0 28px;
-  color: #aab6c9;
+  color: #929fb3;
   line-height: 1.8;
 }
 
 .cta {
-  color: #c4eaff;
+  color: #8be7ff;
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 .cta:hover {
-  color: #72dfff;
+  color: #ffffff;
 }
+
+/* Panel anterior, conservado */
 
 .paradoxPanel {
   max-width: 340px;
@@ -85,7 +106,7 @@
 .panelLabel {
   display: block;
   margin-bottom: 28px;
-  color: #8ccde8;
+  color: #91a9c5;
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   line-height: 1.8;
@@ -100,7 +121,7 @@
 
 .paradoxPanel p {
   margin: 0 0 32px;
-  color: #aab6c9;
+  color: #929fb3;
   font-size: 0.9rem;
   line-height: 1.9;
 }
@@ -109,7 +130,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  color: #c4eaff;
+  color: #8be7ff;
   font-size: 0.65rem;
   letter-spacing: 0.14em;
 }
@@ -118,13 +139,15 @@
   font-size: 1rem;
 }
 
+/* Animaciones */
+
 @keyframes typing {
   from {
     width: 0;
   }
 
   to {
-    width: 13ch;
+    width: 100%;
   }
 }
 
@@ -133,6 +156,8 @@
     border-color: transparent;
   }
 }
+
+/* Responsive */
 
 @media (max-width: 760px) {
   .hero {
@@ -146,45 +171,20 @@
     font-size: clamp(1.7rem, 7vw, 2.6rem);
   }
 
+  .headline {
+    font-size: clamp(1.8rem, 7vw, 2.6rem);
+  }
+
   .paradoxPanel {
-    max-width: 340px;
-    width: 100%;
-    box-sizing: border-box;
-    justify-self: end;
-    padding: 28px;
-
-    background: rgba(25, 35, 52, 0.90);
-    border: 1px solid rgba(160, 195, 220, 0.22);
-    border-radius: 8px;
-
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-
-    box-shadow:
-      0 8px 24px rgba(0, 0, 0, 0.22),
-      inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  }
-
-  @media (max-width: 760px) {
-    .paradoxPanel {
-      justify-self: start;
-      max-width: 440px;
-      padding: 24px;
-    }
-  }
-
-  .panelLabel {
-    margin-bottom: 14px;
-  }
-
-  .paradoxPanel p {
-    margin-bottom: 18px;
+    display: none;
   }
 }
 
+/* Accesibilidad */
+
 @media (prefers-reduced-motion: reduce) {
-  .name span {
-    width: auto;
+  .typingSequence {
+    width: fit-content;
     animation: none;
     border-right: none;
   }

@@ -1,0 +1,129 @@
+.work {
+    position: relative;
+    min-height: 100vh;
+    padding: 140px 10%;
+
+    color: #f5f7ff;
+}
+
+.header {
+    max-width: 650px;
+    margin-bottom: 100px;
+}
+
+.eyebrow,
+.category,
+.number {
+    color: #8ccde8;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+}
+
+.header h2 {
+    margin: 24px 0 16px;
+    font-family: var(--font-instrument-serif), serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+}
+
+.header p,
+.projectInfo p {
+    color: #929fb3;
+    line-height: 1.8;
+}
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    gap: 110px;
+}
+
+.project {
+    display: grid;
+    grid-template-columns: 40px 0.8fr 1.2fr;
+    align-items: center;
+    gap: 40px;
+}
+
+.project:nth-child(even) .preview {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.project:nth-child(even) .projectInfo {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.projectInfo h3 {
+    margin: 16px 0;
+    font-family: var(--font-instrument-serif), serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-weight: 400;
+}
+
+.technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.technologies span {
+    padding: 7px 12px;
+    border: 1px solid rgb(139 231 255 / 20%);
+    border-radius: 3px;
+    color: #aab6c9;
+    font-size: 0.7rem;
+}
+
+.preview {
+    width: min(100%, 32vw);
+    aspect-ratio: 1 / 1;
+    min-height: 0;
+    box-sizing: border-box;
+
+    display: grid;
+    place-items: center;
+
+    background: #101827;
+    border: 1px solid rgb(139 231 255 / 12%);
+    color: #65758c;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+}
+
+@media (max-width: 760px) { 
+
+    .preview {
+        width: min(100%, 75vw);
+    }
+
+    .work {
+        padding: 100px 7%;
+    }
+
+    .header {
+        margin-bottom: 65px;
+    }
+
+    .projects {
+        gap: 75px;
+    }
+
+    .project,
+    .project:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .project:nth-child(even) .preview {
+        order: 0;
+    }
+
+    .preview {
+        min-height: 230px;
+    }
+}
+

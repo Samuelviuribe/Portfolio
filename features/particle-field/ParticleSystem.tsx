@@ -98,7 +98,7 @@ void main() {
 
   // Desvanecimiento a lo largo de la estela
   float trailFade = smoothstep(-1.0, 0.8, vTrail);
-  float alpha = trailFade * 0.35;
+  float alpha = trailFade * 0.18;
   gl_FragColor = vec4(color, alpha);
 }
 `;
@@ -225,27 +225,22 @@ export default function ParticleSystem() {
     const progressRef = useRef(0);
     const targetProgressRef = useRef(0);
 
-    useEffect(() => {
-        const updateProgress = () => {
-            const maxScroll =
-                document.documentElement.scrollHeight - window.innerHeight;
+useEffect(() => {
+    const updateProgress = () => {
+        targetProgressRef.current = Math.min(
+            1,
+            Math.max(0, window.scrollY / window.innerHeight)
+        );
+    };
 
-            progressRef.current =
-                maxScroll > 0
-                    ? Math.min(1, Math.max(0, window.scrollY / maxScroll))
-                    : 0;
+    updateProgress();
 
-            targetProgressRef.current = Math.min(
-                1,
-                Math.max(0, window.scrollY / window.innerHeight)
-            );
-        };
+    window.addEventListener('scroll', updateProgress, { passive: true });
 
-        updateProgress();
-        window.addEventListener('scroll', updateProgress, { passive: true });
-
-        return () => window.removeEventListener('Scroll', updateProgress);
-    }, []);
+    return () => {
+        window.removeEventListener('scroll', updateProgress);
+    };
+}, []);
 
     useFrame((state, delta) => {
         if (materialRef.current) {

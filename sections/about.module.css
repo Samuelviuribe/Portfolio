@@ -1,0 +1,103 @@
+.about {
+    position: relative;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 10%;
+    color: #f5f7ff;
+}
+
+.container {
+    width: 100%;
+    max-width: 1050px;
+    text-align: center;
+}
+
+.eyebrow {
+    color: #8ccde8;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+}
+
+.container h2 {
+    margin: 28px 0;
+    font-family: var(--font-instrument-serif), serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+}
+
+.container h2 span {
+    color: #72dfff;
+}
+
+.intro {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #aab6c9;
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px;
+    margin-top: 90px;
+    text-align: left;
+}
+
+.details article {
+    padding-top: 20px;
+    border-top: 1px solid rgb(139 231 255 / 25%);
+}
+
+.details h3 {
+    margin: 0 0 18px;
+    color: #8ccde8;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+}
+
+.details p {
+    margin: 0;
+    color: #aab6c9;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.skills {
+    margin-top: 85px;
+}
+
+.skills span {
+    color: #8ccde8;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+}
+
+.skills p {
+    margin-top: 18px;
+    color: #929fb3;
+    font-size: 0.8rem;
+    line-height: 1.8;
+}
+
+@media (max-width: 760px) {
+    .about {
+        padding: 110px 7%;
+    }
+
+    .details {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        margin-top: 60px;
+    }
+
+    .skills {
+        margin-top: 60px;
+    }
+}

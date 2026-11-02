@@ -1,6 +1,8 @@
 import ParticleScene from '@/features/particle-field/ParicleScene';
 import Hero from '@/sections/Hero';
 import Navbar from '@/components/Navbar';
+import Work from '@/sections/Work';
+import About from '@/sections/About';
 
 
 export default function Home() {
@@ -14,16 +16,9 @@ export default function Home() {
 
       <Hero/>
 
-      <section 
-        id='work'
-        style={{
-          height: '200vh',
-          background: '#080808',
-          color: 'white',
-          padding: '40px',
-        }}>
-      </section>
+      <Work/>
 
+      <About/>
 
     </main>
   );
