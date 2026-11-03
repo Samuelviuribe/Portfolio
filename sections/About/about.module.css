@@ -1,0 +1,204 @@
+.about {
+    position: relative;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 140px 10%;
+    color: #f5f7ff;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+
+    width: min(90%, 1100px);
+    margin-inline: auto;
+    box-sizing: border-box;
+
+    background: rgba(10, 10, 15, 0.72);
+    backdrop-filter: blur(0.5px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.eyebrow {
+    color: #8ccde8;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+}
+
+.container h2 {
+    margin: 28px 0;
+    font-family: var(--font-instrument-serif), serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    font-weight: 400;
+    letter-spacing: -0.04em;
+}
+
+.container h2 span {
+    color: #72dfff;
+}
+
+.intro {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #aab6c9;
+    font-size: 1rem;
+    line-height: 1.9;
+}
+
+.details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 45px;
+    margin-top: 90px;
+    text-align: left;
+}
+
+.details article {
+    padding-top: 20px;
+    border-top: 1px solid rgb(139 231 255 / 25%);
+}
+
+.details h3 {
+    margin: 0 0 18px;
+    color: #8ccde8;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+}
+
+.details p {
+    margin: 0;
+    color: #aab6c9;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.skills {
+    width: 100%;
+    margin-top: 3rem;
+    overflow: hidden;
+}
+
+.skillsLabel {
+    display: block;
+    margin-bottom: 1.25rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+
+    mask-image: linear-gradient(to right,
+            transparent 0%,
+            black 7%,
+            black 93%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(to right,
+            transparent 0%,
+            black 7%,
+            black 93%,
+            transparent 100%);
+
+}
+
+.carouselTrack {
+    display: flex;
+    align-items: center;
+    width: max-content;
+    will-change: transform;
+}
+
+.technology {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    flex-shrink: 0;
+
+    padding: 0.85rem 1.4rem;
+    margin-right: 0.75rem;
+
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.035);
+    color: rgba(255, 255, 255, 0.85);
+
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+
+    transition:
+        background 200ms ease,
+        border-color 200ms ease,
+        color 200ms ease;
+
+}
+
+.technology {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(103, 232, 249, 0.35);
+    color: #fff;
+}
+
+.technologyDot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+    background: #67e8f9;
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.45);
+
+}
+
+@media (max-width: 600px) {
+    .skills {
+        margin-top: 2rem;
+    }
+
+    .skillsLabel {
+        font-size: 0.65rem;
+        margin-bottom: 1rem;
+    }
+
+    .technology {
+        padding: 0.75rem 1.1re  m;
+        margin-right: 0.5rem;
+        font-size: 0.82rem;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .carouselTrack {
+        transform: none !important;
+    }
+}
+
+@media (max-width: 760px) {
+    .about {
+        padding: 110px 7%;
+    }
+
+    .details {
+        grid-template-columns: 1fr;
+        gap: 35px;
+        margin-top: 60px;
+    }
+
+    .skills {
+        margin-top: 60px;
+    }
+}

@@ -1,8 +1,9 @@
 import ParticleScene from '@/features/particle-field/ParicleScene';
-import Hero from '@/sections/Hero';
+import Hero from '@/sections/Hero/Hero';
 import Navbar from '@/components/Navbar';
-import Work from '@/sections/Work';
-import About from '@/sections/About';
+import Work from '@/sections/Work/Work';
+import About from '@/sections/About/About';
+import Contact from '@/sections/Contact/Contact';
 
 
 export default function Home() {
@@ -19,6 +20,8 @@ export default function Home() {
       <Work/>
 
       <About/>
+
+      <Contact/>
 
     </main>
   );
