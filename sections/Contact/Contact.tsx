@@ -4,7 +4,7 @@ export default function Contact() {
     return (
         <section id="contact" className={styles.contact}>
             <div className={styles.container}>
-                <span className={styles.eyebrow}>04 / GET IN TOUCH</span>
+                <span className={styles.eyebrow}>GET IN TOUCH</span>
 
                 <h2 className={styles.title}>
                     Interested in <span>seeing more?</span>

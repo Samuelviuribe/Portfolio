@@ -1,3 +1,6 @@
+ 'use client';
+
+import { useRef } from 'react';
 import styles from './work.module.css';
 
 const projects = [
@@ -7,6 +10,8 @@ const projects = [
         category: 'WEB DEVELOPMENT',
         description: 'A digital experience focused on design, functionality and interaction.',
         technologies: ['Next.js', 'React', 'TypeScript'],
+        video: '/projects/acfinancial/Preview%20ACFinancial.mp4',
+        
     },
     {
         number: '02',
@@ -14,6 +19,7 @@ const projects = [
         category: 'SOFTWARE DEVELOPMENT',
         description: 'A software solution designed to solve a practical problem.',
         technologies: ['Python', 'Database', 'UI Design'],
+        video: '/projects/magicballons/preview MagicBallons.mp4',
     },
     {
         number: '03',
@@ -21,14 +27,47 @@ const projects = [
         category: 'CREATIVE DEVELOPMENT',
         description: 'An exploration of interactive technology and visual experiences.',
         technologies: ['Three.js', 'WebGL', 'React'],
+        video: '/projects/sgdb/Preview_SGDB.mp4',
     },
 ];
+
+function ProjectPreview({ video }: { video: string; }) {
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    const handleMouseEnter = () => {
+        videoRef.current?.play().catch(() => {});
+    };
+
+    const handleMouseLeave = () => {
+        if (videoRef.current) {
+            videoRef.current.pause();
+            videoRef.current.currentTime = 0;
+        }
+    };
+
+    return (
+        <div
+            className={styles.preview}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+        >
+            <video
+                ref={videoRef}
+                src={video}
+                muted
+                loop
+                playsInline
+                preload="none"
+            />
+        </div>
+    );
+}
 
 export default function Work() {
     return (
         <section id="work" className={styles.work}>
             <header className={styles.header}>
-                <span className={styles.eyebrow}>02 / SELECTED WORK</span>
+                <span className={styles.eyebrow}>SELECTED WORK</span>
                 <h2>Things I've built.</h2>
                 <p>
                     A collection of projects exploring software,
@@ -57,9 +96,10 @@ export default function Work() {
                             </div>
                         </div>
 
-                        <div className={styles.preview}>
-                            <span>PROJECT PREVIEW</span>
-                        </div>
+                        <ProjectPreview
+                            video={project.video}
+                            
+                        />
                     </article>
                 ))}
             </div>

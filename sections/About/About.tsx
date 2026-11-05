@@ -75,7 +75,7 @@ export default function About() {
     return (
         <section id="about" className={styles.about}>
             <div className={styles.container}>
-                <span className={styles.eyebrow}>03 / ABOUT ME</span>
+                <span className={styles.eyebrow}>ABOUT ME</span>
 
                 <h2>
                     A little about <span>what I do.</span>
