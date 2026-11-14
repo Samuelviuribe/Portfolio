@@ -6,6 +6,7 @@
     flex-direction: column;
     justify-content: space-between;
     overflow: hidden;
+    color: #f5f7ff;
 }
 
 .container {
@@ -15,13 +16,17 @@
     margin: 0 auto;
 }
 
-.eyebrow {
+.eyebrow,
+.socialLabel {
     display: block;
-    margin-bottom: 2.5rem;
     font-size: 0.7rem;
     font-weight: 500;
     letter-spacing: 0.18em;
     color: rgba(255, 255, 255, 0.5);
+}
+
+.eyebrow {
+    margin-bottom: 2.5rem;
 }
 
 .title {
@@ -46,41 +51,154 @@
     color: rgba(255, 255, 255, 0.6);
 }
 
-.links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2.5rem;
-    margin-top: 3rem;
+.content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 180px;
+    gap: 5rem;
+    margin-top: 4rem;
 }
 
-.links a {
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 650px;
+    box-sizing: border-box;
+    padding: 2rem;
+
+    background: #101827;
+    border: 1px solid #344256;
+    border-radius: 12px;
+}
+
+.fieldGroup {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.field label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1rem 0;
+
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
+
+    background: transparent;
+    color: #fff;
+
+    font: inherit;
+    font-size: 0.95rem;
+    outline: none;
+
+    transition: border-color 200ms ease;
+}
+
+.field textarea {
+    resize: vertical;
+    min-height: 130px;
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: #67e8f9;
+}
+
+.submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    align-self: flex-start;
+
+    min-width: 175px;
+    padding: 1rem 1.3rem;
+
+    border: 1px solid rgba(103, 232, 249, 0.45);
+    border-radius: 4px;
+
+    background: rgba(103, 232, 249, 0.08);
+    color: #67e8f9;
+
+    font: inherit;
+    font-size: 0.9rem;
+    cursor: pointer;
+
+    transition:
+        background 200ms ease,
+        border-color 200ms ease,
+        color 200ms ease;
+}
+
+.submit:hover {
+    background: rgba(103, 232, 249, 0.16);
+    border-color: #67e8f9;
+}
+
+.submit span {
+    transition: transform 200ms ease;
+}
+
+.submit:hover span {
+    transform: translate(3px, -3px);
+}
+
+.socials {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-top: 1rem;
+}
+
+.socialLabel {
+    margin-bottom: 0.5rem;
+}
+
+.socials a {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding-bottom: 0.4rem;
 
     color: rgba(255, 255, 255, 0.85);
     font-size: 0.95rem;
     text-decoration: none;
 
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-
-    transition:
-        color 200ms ease,
-        border-color 200ms ease;
+    transition: color 200ms ease;
 }
 
-.links a span {
+.socials a span {
     color: #67e8f9;
     transition: transform 200ms ease;
 }
 
-.links a:hover {
+.socials a:hover {
     color: #67e8f9;
-    border-color: #67e8f9;
 }
 
-.links a:hover span {
+.socials a:hover span {
     transform: translate(3px, -3px);
 }
 
@@ -101,28 +219,131 @@
     font-size: 0.75rem;
 }
 
-@media (max-width: 600px) {
+/* LIGHT THEME */
+
+:global(html[data-theme="light"]) .contact {
+    color: #171717;
+}
+
+:global(html[data-theme="light"]) .eyebrow,
+:global(html[data-theme="light"]) .socialLabel {
+    color: #9b536d;
+}
+
+:global(html[data-theme="light"]) .title {
+    color: #171717;
+}
+
+:global(html[data-theme="light"]) .title span {
+    color: #d66b93;
+}
+
+:global(html[data-theme="light"]) .description {
+    color: #51404a;
+}
+
+:global(html[data-theme="light"]) .field label {
+    color: #9b536d;
+}
+
+:global(html[data-theme="light"]) .field input,
+:global(html[data-theme="light"]) .field textarea {
+    color: #171717;
+    border-color: rgba(214, 107, 147, 0.4);
+}
+
+:global(html[data-theme="light"]) .field input::placeholder,
+:global(html[data-theme="light"]) .field textarea::placeholder {
+    color: rgba(23, 23, 23, 0.4);
+}
+
+:global(html[data-theme="light"]) .field input:focus,
+:global(html[data-theme="light"]) .field textarea:focus {
+    border-color: #d66b93;
+}
+
+:global(html[data-theme="light"]) .submit {
+    color: #b94f78;
+    background: rgba(255, 220, 232, 0.3);
+    border-color: rgba(214, 107, 147, 0.55);
+}
+
+:global(html[data-theme="light"]) .submit:hover {
+    background: rgba(255, 220, 232, 0.65);
+    border-color: #d66b93;
+}
+
+:global(html[data-theme="light"]) .socials a {
+    color: #171717;
+}
+
+:global(html[data-theme="light"]) .socials a span {
+    color: #d66b93;
+}
+
+:global(html[data-theme="light"]) .socials a:hover {
+    color: #d66b93;
+}
+
+:global(html[data-theme="light"]) .footer {
+    color: #77717a;
+    border-color: rgba(214, 107, 147, 0.25);
+}
+
+:global(html[data-theme="light"]) .form {
+    background: #fff0f5;
+    border-color: #d66b93;
+    box-shadow: 0 8px 28px rgba(180, 80, 120, 0.08);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 760px) {
     .contact {
-        min-height: 70vh;
-        padding: 6rem 6% 1.5rem;
+        padding: 6rem 7% 2rem;
     }
 
-    .eyebrow {
-        margin-bottom: 2rem;
-    }
-
-    .description {
-        margin-top: 1.5rem;
-    }
-
-    .links {
-        gap: 1.5rem;
+    .content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
         margin-top: 2.5rem;
     }
 
+    .socials {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .socialIcon {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+    }
+
+    .socials a {
+        font-size: 1.05rem;
+        gap: 0.7rem;
+    }
+
+    .socialLabel {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .fieldGroup {
+        grid-template-columns: 1fr;
+    }
+
     .footer {
-        margin-top: 5rem;
+        margin-top: 4rem;
         flex-direction: column;
         gap: 0.6rem;
+    }
+
+    .form {
+        padding: 1.25rem;
     }
 }

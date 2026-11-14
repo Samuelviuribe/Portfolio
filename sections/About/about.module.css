@@ -1,3 +1,4 @@
+
 .about {
     position: relative;
     min-height: 100vh;
@@ -12,13 +13,14 @@
 .container {
     position: relative;
     z-index: 1;
-
     width: min(90%, 1100px);
     margin-inline: auto;
     box-sizing: border-box;
 
     background: rgba(10, 10, 15, 0.72);
-    backdrop-filter: blur(0.5px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
     border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 16px;
     padding: 2rem;
@@ -36,6 +38,7 @@
     font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 400;
     letter-spacing: -0.04em;
+    color: #f5f7ff;
 }
 
 .container h2 span {
@@ -67,7 +70,7 @@
     margin: 0 0 18px;
     color: #8ccde8;
     font-size: 0.7rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.14em;
 }
 
@@ -99,16 +102,15 @@
     overflow: hidden;
 
     mask-image: linear-gradient(to right,
-            transparent 0%,
-            black 7%,
-            black 93%,
-            transparent 100%);
+        transparent 0%,
+        black 7%,
+        black 93%,
+        transparent 100%);
     -webkit-mask-image: linear-gradient(to right,
-            transparent 0%,
-            black 7%,
-            black 93%,
-            transparent 100%);
-
+        transparent 0%,
+        black 7%,
+        black 93%,
+        transparent 100%);
 }
 
 .carouselTrack {
@@ -124,33 +126,29 @@
     justify-content: center;
     gap: 0.7rem;
     flex-shrink: 0;
-    
+
     padding: 0.85rem 1.4rem;
     margin-top: 4px;
     margin-right: 0.75rem;
 
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(103, 232, 249, 0.35);
     border-radius: 79px;
 
-    background: rgba(255, 255, 255, 0.035);
-    color: rgba(255, 255, 255, 0.85);
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
 
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 500;
     letter-spacing: 0.01em;
     white-space: nowrap;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 
     transition:
         background 200ms ease,
         border-color 200ms ease,
         color 200ms ease;
-
-}
-
-.technology {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(103, 232, 249, 0.35);
-    color: #fff;
 }
 
 .technologyDot {
@@ -161,8 +159,57 @@
     border-radius: 50%;
     background: #67e8f9;
     box-shadow: 0 0 10px rgba(103, 232, 249, 0.45);
-
 }
+
+/* LIGHT THEME */
+
+:global(html[data-theme="light"]) .about {
+    color: #171717;
+}
+
+:global(html[data-theme="light"]) .container {
+    background: rgba(255, 220, 232, 0.38);
+    border-color: rgba(232, 138, 170, 0.55);
+}
+
+:global(html[data-theme="light"]) .eyebrow,
+:global(html[data-theme="light"]) .details h3 {
+    color: #c6537d;
+}
+
+:global(html[data-theme="light"]) .container h2 {
+    color: #171717;
+}
+
+:global(html[data-theme="light"]) .container h2 span {
+    color: #d66b93;
+}
+
+:global(html[data-theme="light"]) .intro,
+:global(html[data-theme="light"]) .details p {
+    color: #51404a;
+}
+
+:global(html[data-theme="light"]) .details article {
+    border-color: rgba(214, 107, 147, 0.55);
+}
+
+:global(html[data-theme="light"]) .skillsLabel {
+    color: #9b536d;
+}
+
+:global(html[data-theme="light"]) .technology {
+    background: rgba(255, 220, 232, 0.30);
+    border-color: rgba(214, 107, 147, 0.45);
+    color: #171717;
+}
+
+:global(html[data-theme="light"]) .technologyDot {
+    background: #d66b93;
+    box-shadow: 0 0 10px rgba(214, 107, 147, 0.45);
+}
+
+/* RESPONSIVE */
 
 @media (max-width: 600px) {
     .skills {
@@ -175,11 +222,10 @@
     }
 
     .technology {
-        padding: 0.75rem 1.1re  m;
+        padding: 0.75rem 1.1rem;
         margin-right: 0.5rem;
         font-size: 0.82rem;
     }
-
 }
 
 @media (prefers-reduced-motion: reduce) {

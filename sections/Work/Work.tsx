@@ -1,4 +1,4 @@
- 'use client';
+'use client';
 
 import { useRef } from 'react';
 import styles from './work.module.css';
@@ -11,7 +11,7 @@ const projects = [
         description: 'A digital experience focused on design, functionality and interaction.',
         technologies: ['Next.js', 'React', 'TypeScript'],
         video: '/projects/acfinancial/Preview%20ACFinancial.mp4',
-        
+
     },
     {
         number: '02',
@@ -31,11 +31,11 @@ const projects = [
     },
 ];
 
-function ProjectPreview({ video }: { video: string; }) {
+function ProjectPreview({ video }: { video: string }) {
     const videoRef = useRef<HTMLVideoElement>(null);
 
     const handleMouseEnter = () => {
-        videoRef.current?.play().catch(() => {});
+        videoRef.current?.play().catch(console.error);
     };
 
     const handleMouseLeave = () => {
@@ -57,7 +57,7 @@ function ProjectPreview({ video }: { video: string; }) {
                 muted
                 loop
                 playsInline
-                preload="none"
+                preload="metadata"
             />
         </div>
     );
@@ -98,7 +98,6 @@ export default function Work() {
 
                         <ProjectPreview
                             video={project.video}
-                            
                         />
                     </article>
                 ))}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Instrument_Serif } from 'next/font/google';
+import LoadingScreen from "@/components/LoadingScreen/LoadingScreen";
 
 const instrumentSerif = Instrument_Serif({
   weight: ['400'],
@@ -27,13 +28,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-  <html
-    lang="en"
-    className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
-  >
-    <body className="min-h-full flex flex-col">
-      {children}
-    </body>
-  </html>
-);
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
+        <LoadingScreen />
+        {children}
+      </body>
+    </html>
+  );
 }

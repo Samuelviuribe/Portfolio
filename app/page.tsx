@@ -1,6 +1,6 @@
 import ParticleScene from '@/features/particle-field/ParicleScene';
 import Hero from '@/sections/Hero/Hero';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/Navbar/Navbar';
 import Work from '@/sections/Work/Work';
 import About from '@/sections/About/About';
 import Contact from '@/sections/Contact/Contact';

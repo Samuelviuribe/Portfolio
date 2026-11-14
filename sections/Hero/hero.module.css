@@ -189,3 +189,38 @@
     border-right: none;
   }
 }
+
+.hero {
+  color: var(--foreground);
+}
+
+.name,
+.headline {
+  color: var(--foreground);
+}
+
+.eyebrow {
+  color: var(--secondary);
+}
+
+.description {
+  color: var(--secondary);
+}
+
+.cta {
+  color: var(--accent);
+}
+
+.cta:hover {
+  color: var(--foreground);
+}
+
+.secondaryCta {
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.secondaryCta:hover {
+  color: var(--accent);
+}

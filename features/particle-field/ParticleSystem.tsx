@@ -83,24 +83,45 @@ const fragmentShader = `
 uniform float uProgress;
 uniform float uTime;
 uniform float uGroupProgress;
+uniform float uTheme;
 
 varying float vGroupId;
 varying float vSpark;
 varying float vTrail;
 
 void main() {
-  vec3 white = vec3(1.0);
-  vec3 electricBlue = vec3(0.12, 0.25, 1.0);
-  vec3 cyan = vec3(0.0, 0.9, 1.0);
-  vec3 purple = vec3(0.55, 0.12, 1.0);
+vec3 white = vec3(1.0);
+vec3 electricBlue = vec3(0.10, 0.30, 1.0);
+vec3 cyan = vec3(0.0, 0.90, 1.0);
+vec3 purple = vec3(0.65, 0.20, 1.0);
 
-  vec3 color = white;
+// Paleta rosa y azul para modo claro
+vec3 rose = vec3(1.0, 0.12, 0.48);
+vec3 pink = vec3(1.0, 0.35, 0.65);
+vec3 blue = vec3(0.12, 0.40, 1.0);
+vec3 lightBlue = vec3(0.25, 0.70, 1.0);
 
-  if (vSpark > 0.65) color = electricBlue;
-  if (vSpark > 0.88) color = cyan;
+vec3 color = white;
 
-  float transitionGlow = sin(uProgress * 3.14159);
-  color = mix(color, purple, transitionGlow * 0.9);
+if (vSpark > 0.65) color = electricBlue;
+if (vSpark > 0.88) color = cyan;
+
+vec3 lightColor = blue;
+
+if (vSpark > 0.40) lightColor = lightBlue;
+if (vSpark > 0.65) lightColor = pink;
+if (vSpark > 0.88) lightColor = rose;
+
+color = mix(color, lightColor, uTheme);
+
+vec3 transitionColor = mix(
+    purple,
+    pink,
+    uTheme
+);
+
+float transitionGlow = sin(uProgress * 3.14159);
+color = mix(color, transitionColor, transitionGlow * 0.9);
 
   float trailFade = smoothstep(-1.0, 0.8, vTrail);
 
@@ -117,7 +138,7 @@ void main() {
 
   float visibility = fadeIn * fadeOut;
 
-  float alpha = trailFade * 0.18 * mix(1.0, visibility, uGroupProgress);
+  float alpha = trailFade * 0.32 * mix(1.0, visibility, uGroupProgress);
 
     gl_FragColor = vec4(color, alpha);
 }
@@ -314,6 +335,8 @@ export default function ParticleSystem() {
     const groupProgressRef = useRef(0);
     const targetGroupProgressRef = useRef(0);
 
+    const themeRef = useRef(0);
+
     useEffect(() => {
         const updateProgress = () => {
             // Primera transición: esfera -> dos esferas
@@ -376,6 +399,17 @@ export default function ParticleSystem() {
             delta
         );
 
+        const isLight =
+            document.documentElement.dataset.theme === 'light';
+
+        themeRef.current = THREE.MathUtils.damp(
+            themeRef.current,
+            isLight ? 1 : 0,
+            4,
+            delta
+        );
+
+        uniforms.uTheme.value = themeRef.current;
         uniforms.uProgress.value = progressRef.current;
         uniforms.uGroupProgress.value = groupProgressRef.current;
         uniforms.uTime.value = state.clock.elapsedTime;
@@ -391,6 +425,7 @@ export default function ParticleSystem() {
                     uProgress: { value: 0 },
                     uGroupProgress: { value: 0 },
                     uTime: { value: 0 },
+                    uTheme: { value: 0 },
                     uResolution: {
                         value: new THREE.Vector2(size.width, size.height),
                     },
