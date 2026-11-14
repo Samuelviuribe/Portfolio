@@ -1,86 +1,77 @@
-Personal Portfolio
+
+# Personal Portfolio
 
 A personal portfolio showcasing my projects, development work, and creative experiments.
 
-Overview
+## Overview
 
 
 
-https://github.com/user-attachments/assets/72343277-c057-453a-a8cb-ff28b3521de4
+https://github.com/user-attachments/assets/cd5ee462-e514-4955-9a5a-bafe0f3c81e9
 
 
 
-This portfolio is designed to present my work as a Software Engineering student, highlighting projects, technical skills, and my approach to software development and visual design.
+This portfolio presents my work as a Software Engineering student, highlighting my projects, technical skills, and approach to software development and visual design.
 
 The experience combines a minimalist interface with interactive elements and 3D particle animations.
 
-Built With
+## Built With
 
-Next.js – React framework
+- Next.js
+- React
+- TypeScript
+- Three.js
+- React Three Fiber
+- CSS Modules
 
-React – User interface
+## Features
 
-TypeScript – Type safety
+- Interactive 3D particle background
+- Scroll-based particle animations
+- Dark and light themes
+- Responsive design
+- Project showcase
+- Contact form
 
-Three.js – 3D graphics
+## Getting Started
 
-React Three Fiber – Three.js integration with React
+### 1. Clone the repository
 
-CSS Modules – Component-level styling
+    git clone <repository-url>
 
-Features
+### 2. Navigate to the project directory
 
-Interactive 3D particle background
+    cd portfolio
 
-Animated transitions based on scroll position
+### 3. Install dependencies
 
-Dark and light themes
+    npm install
 
-Responsive design
+### 4. Run the development server
 
-Project showcase
-
-About section and technology highlights
-
-Contact form
-
-Getting Started
-
-Clone the repository:
-
-git clone <repository-url>
-
-Navigate to the project directory:
-
-cd portfolio
-
-Install dependencies:
-
-npm install
-
-Run the development server:
-
-npm run dev
+    npm run dev
 
 Open http://localhost:3000 in your browser.
 
-Project Structure
+## Project Structure
 
-src/
-├── app/
-├── components/
-├── features/
-│   └── particle-field/
-├── sections/
-│   ├── Hero/
-│   ├── Work/
-│   ├── About/
-│   └── Contact/
+    src/
+    ├── app/
+    ├── components/
+    ├── features/
+    │   └── particle-field/
+    └── sections/
+        ├── Hero/
+        ├── Work/
+        ├── About/
+        └── Contact/
 
-Author
+## Author
 
-Samuel Viaña
+**Samuel Viaña**
 
-GitHub: @Samuelviuribe
+- GitHub: [@Samuelviuribe](https://github.com/Samuelviuribe)
+
+---
 
 Built with curiosity and a passion for software development.
