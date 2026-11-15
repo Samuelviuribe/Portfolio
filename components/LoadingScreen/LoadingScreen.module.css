@@ -37,7 +37,7 @@
     width: 40%;
     height: 100%;
     background: #8ccde8;
-    animation: loading 2.5s ease-in-out infinite;
+    animation: loading 3.0s ease-in-out infinite;
 }
 
 .label {
@@ -46,6 +46,18 @@
     letter-spacing: 0.2em;
     color: #929fb3;
 }
+
+
+.loader {
+    opacity: 1;
+    transition: opacity 800ms ease;
+}
+
+.exiting {
+    opacity: 0;
+    pointer-events: none;
+}
+
 
 @keyframes loading {
     from {
