@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -11,6 +12,7 @@ const links = [
 
 export default function Navbar() {
     const [lightMode, setLightMode] = useState(false);
+    const [menuOpen, setMenuOpen] = useState(false);
 
     useEffect(() => {
         const savedTheme = localStorage.getItem('theme');
@@ -28,6 +30,8 @@ export default function Navbar() {
         localStorage.setItem('theme', newTheme);
     };
 
+    const closeMenu = () => setMenuOpen(false);
+
     return (
         <nav className={styles.navbar} aria-label="Main navigation">
             <div className={styles.identity}>
@@ -38,9 +42,9 @@ export default function Navbar() {
             </div>
 
             <div className={styles.navigation}>
-                <div className={styles.links}>
+                <div className={`${styles.links} ${menuOpen ? styles.open : ''}`}>
                     {links.map((link) => (
-                        <a key={link.href} href={link.href}>
+                        <a key={link.href} href={link.href} onClick={closeMenu}>
                             {link.label}
                         </a>
                     ))}
@@ -53,6 +57,16 @@ export default function Navbar() {
                     title="Cambiar tema"
                 >
                     {lightMode ? '☀' : '☾'}
+                </button>
+
+                <button
+                    className={styles.menuToggle}
+                    onClick={() => setMenuOpen(!menuOpen)}
+                    aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+                    aria-expanded={menuOpen}
+                    aria-controls="mobile-navigation"
+                >
+                    {menuOpen ? '✕' : '☰'}
                 </button>
             </div>
         </nav>

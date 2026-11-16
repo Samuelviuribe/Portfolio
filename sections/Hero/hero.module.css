@@ -159,34 +159,85 @@
 
 /* Responsive */
 
+
 @media (max-width: 760px) {
   .hero {
+    min-height: 100svh;
     grid-template-columns: 1fr;
     align-content: center;
-    gap: 44px;
+    gap: 32px;
     padding: 110px 7% 70px;
   }
 
   .name {
-    font-size: clamp(1.7rem, 7vw, 2.6rem);
+    font-size: clamp(2rem, 8vw, 3rem);
   }
 
   .headline {
-    font-size: clamp(1.8rem, 7vw, 2.6rem);
+    font-size: clamp(1.6rem, 6.5vw, 2.4rem);
   }
 
   .paradoxPanel {
     display: none;
   }
+
+  .description {
+    max-width: 48ch;
+    font-size: 0.95rem;
+  }
 }
 
-/* Accesibilidad */
+@media (max-width: 480px) {
+  .name,
+  .headline {
+    width: auto;
+    max-width: 100%;
+    white-space: normal;
+    overflow: visible;
+    animation: none;
+  }
+
+  .name span,
+  .headline span {
+    white-space: normal;
+  }
+
+  .name {
+    margin-bottom: 16px;
+  }
+
+  .headline {
+    margin-bottom: 20px;
+  }
+
+  .eyebrow {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+  }
+
+  .description br {
+    display: none;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .typingSequence {
-    width: fit-content;
+  .name,
+  .headline {
+    width: auto;
     animation: none;
-    border-right: none;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .name span,
+  .headline span {
+    white-space: normal;
   }
 }
 
